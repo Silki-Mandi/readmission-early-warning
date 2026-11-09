@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head><title>New Discharge</title></head>
+<body style="font-family: Arial, sans-serif; margin: 30px;">
+  <h1>New Discharge</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button>Score patient</button>
+  </form>
+  <p><a href="/">Back to worklist</a></p>
+</body>
+</html>

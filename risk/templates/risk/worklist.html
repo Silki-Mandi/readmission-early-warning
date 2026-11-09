@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Readmission Worklist</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 30px; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; vertical-align: top; }
+    th { background: #f0f0f0; }
+    .HIGH { background: #f8d0d0; }
+    .MEDIUM { background: #fdeccb; }
+    .LOW { background: #d8f0d8; }
+  </style>
+</head>
+<body>
+  <h1>Discharge Intervention Worklist</h1>
+  <p>
+    <a href="/">All</a> |
+    <a href="/?tier=HIGH">High</a> |
+    <a href="/?tier=MEDIUM">Medium</a> |
+    <a href="/?tier=LOW">Low</a> |
+    <a href="/new/">+ New discharge</a>
+  </p>
+  <table>
+    <tr>
+      <th>Patient</th><th>Diagnosis</th><th>Risk score</th><th>Tier</th>
+      <th>Why</th><th>Recommended actions</th><th></th>
+    </tr>
+    {% for p in patients %}
+    <tr>
+      <td>{{ p.patient_id }}</td>
+      <td>{{ p.diagnosis_code }}</td>
+      <td>{{ p.risk_score|floatformat:2 }}</td>
+      <td class="{{ p.risk_tier }}">{{ p.risk_tier }}</td>
+      <td>{{ p.risk_factors|join:", " }}</td>
+      <td><ul>{% for t in p.tasks %}<li>{{ t }}</li>{% endfor %}</ul></td>
+      <td>
+        <form method="post" action="{% url 'done' p.pk %}">
+          {% csrf_token %}
+          <button>Done</button>
+        </form>
+      </td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="7">No patients.</td></tr>
+    {% endfor %}
+  </table>
+</body>
+</html>
