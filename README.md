@@ -23,7 +23,12 @@ python manage.py runserver
 Then open http://127.0.0.1:8000
 
 ## Live demo
-Add your PythonAnywhere link here.
+https://silkimandi05.pythonanywhere.com
+
+## Results
+- Trained on 69,990 patients; 9% were readmitted within 30 days.
+- ROC-AUC on held-out test data: 0.60.
+- The score is used to rank patients so nurses can prioritise follow-up. A moderate AUC is typical for readmission prediction.
 
 ## Limitations
 - Trained on diabetic inpatients only, with data from 1999 to 2008.
