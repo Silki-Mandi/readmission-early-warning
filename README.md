@@ -23,7 +23,10 @@ python manage.py runserver
 Then open http://127.0.0.1:8000
 
 ## Live demo
-Link: https://silkimandi05.pythonanywhere.com
+
+[Open the live app](https://silkimandi05.pythonanywhere.com)
+
+https://silkimandi05.pythonanywhere.com
 
 ## Results
 - Trained on 69,990 patients; 9% were readmitted within 30 days.
